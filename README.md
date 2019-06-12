@@ -57,22 +57,20 @@ autlib follows the `AUT` format specification (2014 Version) as defined in [CADP
   <tr>
     <td><b>Build</b></td>
     <td>CMake</td>
+    <td><b>Docs</b></td>	
+    <td>Doxygen</td>
   </tr>
   <tr>
     <td><b>Compiler</b></td>
     <td>GCC (for now)</td>
+    <td><b>Testing</b></td>	
+    <td>Git</td>
   </tr>
   <tr>
     <td><b>Parsing</b></td>
     <td>Flex, Bison</td>
-  </tr>
-  <tr>
-    <td><b>Docs</b></td>
-    <td>Doxygen</td>
-  </tr>
-  <tr>
-    <td><b>Testing</b></td>
-    <td>Git</td>
+    <td><b>Coverage</b></td>
+    <td>lcov</td>
   </tr>
 </table>
 
