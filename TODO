@@ -1,0 +1,20 @@
+[*] Major (To be added in next major version)
+------------------------------------------------+------------+
+[+] improve testing                             |++++++++    |
+[+] aut/algo/search                             |++++++      |
+[+] aut/algo/sort                               |++++++      |
+[+] online documentation e.g readthedocs        |++          |
+[+] cross platform support                      |++++        |
+                                                
+                                                
+[*] Minor (To be added in next minor version)
+------------------------------------------------+------------+
+[+] Finish Documentation                        |++++++++++++|
+[+] aut/repr/validate                           |++++++      |
+[+] C/C++ interoperability                      |++++++++    |
+                                               
+
+[*] Extras
+------------------------------------------------+------------+
+[+] website                                     |++          |
+[+] coding style guidelines                     |++++        |

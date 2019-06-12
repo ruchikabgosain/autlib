@@ -1,0 +1,12 @@
+[*] 10/04/2019. Descriptor Representation Finished
+    - incluce/aut/repr/descriptor.h [OK]
+    - src/repr/descriptor.c         [OK]
+    - test/test_repr_descriptor.cpp [OK]
+    [Extras]
+      (1) Double check aut/repr/descriptor.h documentation 
+          for errors and possibly extend it with more code 
+          examples etc.
+      (2) Add more detailed tests
+      (3) Calculate Coverage
+
+[*] 11/04/2019. Transition Representation Finished

@@ -1,0 +1,18 @@
+#tags
+.tags
+
+#build folder
+build/
+
+#editor and ide stuff
+.vscode/
+.eclipse/
+
+#flex/bison generated files
+src/read/_parser_.c
+src/read/_parser_.h
+src/read/_scanner_.c
+src/read/_scanner_.h
+
+#bison report
+*.bison

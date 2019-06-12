@@ -1,0 +1,9 @@
+DOXYFILE_ENCODING     = UTF-8
+PROJECT_NAME          = "autlib"
+OUTPUT_DIRECTORY      = .
+INPUT                 = @CMAKE_CURRENT_SOURCE_DIR@/../include/aut/
+RECURSIVE             = YES
+FILE_PATTERNS         = *.c *.h
+GENERATE_HTML         = Yes
+EXTRACT_ALL	          = Yes
+HTML_EXTRA_STYLESHEET = @CMAKE_CURRENT_SOURCE_DIR@/CustomDoxygen.css
