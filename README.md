@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/gkarlos/autlib.svg?branch=master)](https://travis-ci.com/gkarlos/autlib) [![codecov](https://codecov.io/gh/gkarlos/autlib/branch/master/graph/badge.svg)](https://codecov.io/gh/gkarlos/autlib/branch/master/graph/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/gkarlos/autlib-ws.svg?token=rqTrNMFoMxk3rt31Fs7Q&branch=master)](https://travis-ci.com/gkarlos/autlib-ws) [![codecov](https://codecov.io/gh/gkarlos/autlib-ws/branch/master/graph/badge.svg)](https://codecov.io/gh/gkarlos/autlib-ws/branch/master/graph/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 autlib
 ======
@@ -49,30 +49,32 @@ autlib follows the `AUT` format specification (2014 Version) as defined in [CADP
  </tr>
 </table>
 
+## Using autlib
+
 ### Requirements
 
 <table>
   <tr>
     <td><b>Build</b></td>
     <td>CMake</td>
-    <td><b>Docs</b></td>
-    <td>Doxygen</td>
   </tr>
   <tr>
     <td><b>Compiler</b></td>
     <td>GCC (for now)</td>
-    <td><b>Testing</b></td>
-    <td>Git</td>
   </tr>
   <tr>
     <td><b>Parsing</b></td>
     <td>Flex, Bison</td>
-    <td><b>Coverage</b></td>
-    <td>lcov</td>
+  </tr>
+  <tr>
+    <td><b>Docs</b></td>
+    <td>Doxygen</td>
+  </tr>
+  <tr>
+    <td><b>Testing</b></td>
+    <td>Git</td>
   </tr>
 </table>
-
-## Using autlib
 
 ### Build the library
 - Make sure you have installed all the requirent packages first
