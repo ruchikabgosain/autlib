@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/gkarlos/autlib.svg?branch=master)](https://travis-ci.com/gkarlos/autlib) [![codecov](https://codecov.io/gh/gkarlos/autlib/branch/master/graph/badge.svg)](https://codecov.io/gh/gkarlos/autlib-ws/branch/master/graph/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/gkarlos/autlib.svg?branch=master)](https://travis-ci.com/gkarlos/autlib) [![codecov](https://codecov.io/gh/gkarlos/autlib/branch/master/graph/badge.svg)](https://codecov.io/gh/gkarlos/autlib/branch/master/graph/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 autlib
 ======
