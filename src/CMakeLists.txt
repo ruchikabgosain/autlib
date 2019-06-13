@@ -36,6 +36,13 @@ message("-- BISON source : " ${BISON_parser_OUTPUTS})
 
 #build static autlib
 add_library(autlib STATIC ${SOURCES} ${FLEX_scanner_OUTPUTS} ${BISON_parser_OUTPUTS})
+set_target_properties(autlib PROPERTIES PREFIX "")
+set_target_properties(autlib PROPERTIES OUTPUT_NAME "autlib")
+set_target_properties(autlib PROPERTIES SUFFIX ".a")
+set_target_properties(autlib PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
+if (COVERAGE)
+  target_link_libraries(autlib coverage_config)
+endif()
 
 #build shared autlib
 if (${BUILD_SHARED})
@@ -45,5 +52,7 @@ if (${BUILD_SHARED})
   endif(COVERAGE)
 	set_target_properties(autlib_shared PROPERTIES POSITION_INDEPENDENT_CODE ON)
   set_target_properties(autlib_shared PROPERTIES PREFIX "")
+  set_target_properties(autlib_shared PROPERTIES OUTPUT_NAME "autlib")
+  set_target_properties(autlib_shared PROPERTIES SUFFIX ".so")
   set_target_properties(autlib_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
 endif()
