@@ -66,6 +66,8 @@ if(COVERAGE)
   target_compile_options(coverage_config INTERFACE
   -O0        # no optimization
   -g         # generate debug info
+  -fprofile-arcs
+  -ftest-coverage
   --coverage # sets all required flags
   )
   if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
