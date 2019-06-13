@@ -35,6 +35,7 @@ before_script:
 script:
   - make
   - ctest
+  - cd ..
 
 after_success:
   # capture coverage info
