@@ -31,14 +31,19 @@ file(GLOB_RECURSE SOURCES "*.c")
 # SET_SOURCE_FILES_PROPERTIES(${SOURCES} PROPERTIES LANGUAGE CXX )
 
 #
-message("FLEX_SOURCE : "  ${FLEX_scanner_OUTPUTS})
-message("BISON_SOURCE: " ${BISON_parser_OUTPUTS})
+message("-- FLEX source : "  ${FLEX_scanner_OUTPUTS})
+message("-- BISON source : " ${BISON_parser_OUTPUTS})
 
+#build static autlib
+add_library(autlib STATIC ${SOURCES} ${FLEX_scanner_OUTPUTS} ${BISON_parser_OUTPUTS})
+
+#build shared autlib
 if (${BUILD_SHARED})
-  add_library(autlib SHARED ${SOURCES} ${FLEX_scanner_OUTPUTS} ${BISON_parser_OUTPUTS})
+  add_library(autlib_shared SHARED ${SOURCES} ${FLEX_scanner_OUTPUTS} ${BISON_parser_OUTPUTS})
   if (COVERAGE)
-    target_link_libraries(autlib coverage_config)
+    target_link_libraries(autlib_shared coverage_config)
   endif(COVERAGE)
-	set_target_properties(autlib PROPERTIES POSITION_INDEPENDENT_CODE ON)
-	set_target_properties(autlib PROPERTIES PREFIX "")
+	set_target_properties(autlib_shared PROPERTIES POSITION_INDEPENDENT_CODE ON)
+  set_target_properties(autlib_shared PROPERTIES PREFIX "")
+  set_target_properties(autlib_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib/)
 endif()
