@@ -23,8 +23,11 @@ extern "C" {
 typedef struct aut_t {
   /** The descriptor of the AUT file */
   autDescriptor_t *descriptor;
-  /** The transitions of the AUT file */
-  autTransition_t *transitions;
+  // /** The transitions of the AUT file */
+  // autTransition_t *transitions;
+  autState_t *sources;
+  autState_t *targets;
+  char **actions;
   /** The number of transitions inserted in this aut_t object */
   size_t size;
   /** The action label for tau. No taus if AUT_TAU_UNKNOWN */
@@ -117,8 +120,8 @@ aut_destroy(aut_t **aut);
 autDescriptor_t *
 aut_get_descriptor(aut_t *aut);
 
-autTransition_t *
-aut_get_transitions(aut_t *aut);
+size_t
+aut_get_transitions(aut_t *aut, autTransition_t **t);
 
 autTransition_t *
 aut_get_transition(aut_t *aut, size_t i);

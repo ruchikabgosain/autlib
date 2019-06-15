@@ -3,7 +3,7 @@
  * @brief Test functionality of aut/repr/aut.h
  */
 #include <gtest/gtest.h>
-#include <aut/repr.h>
+#include <aut.h>
 
 extern "C" {
   #include <stdlib.h>
@@ -25,10 +25,12 @@ TEST(aut_create, valid_stack_values)
   ASSERT_EQ(aut->descriptor->initstate, 0);
   ASSERT_EQ(aut->descriptor->num_transitions, 1);
   ASSERT_EQ(aut->descriptor->num_states, 2);
-  ASSERT_NE(aut->transitions, nullptr);
-  ASSERT_EQ(aut->transitions[0].source, 0);
-  ASSERT_EQ(aut->transitions[0].target, 0);
-  ASSERT_EQ(aut->transitions[0].action, nullptr);
+  ASSERT_NE(aut->sources, nullptr);
+  ASSERT_NE(aut->targets, nullptr);
+  ASSERT_NE(aut->actions, nullptr);
+  ASSERT_EQ(aut->sources[0], 0);
+  ASSERT_EQ(aut->targets[0], 0);
+  ASSERT_EQ(aut->actions[0], nullptr);
   ASSERT_EQ(strcmp(aut->tau, "t"), 0);
 #endif
   free(aut);
@@ -49,10 +51,12 @@ TEST(aut_create, valid_heap_values)
   ASSERT_EQ(aut->descriptor->initstate, 0);
   ASSERT_EQ(aut->descriptor->num_transitions, 1);
   ASSERT_EQ(aut->descriptor->num_states, 2);
-  ASSERT_NE(aut->transitions, nullptr);
-  ASSERT_EQ(aut->transitions[0].source, 0);
-  ASSERT_EQ(aut->transitions[0].target, 0);
-  ASSERT_EQ(aut->transitions[0].action, nullptr);
+  ASSERT_NE(aut->sources, nullptr);
+  ASSERT_NE(aut->targets, nullptr);
+  ASSERT_NE(aut->actions, nullptr);
+  ASSERT_EQ(aut->sources[0], 0);
+  ASSERT_EQ(aut->targets[0], 0);
+  ASSERT_EQ(aut->actions[0], nullptr);
   ASSERT_EQ(strcmp(aut->tau, "t"), 0);
 #endif
   free(desc);
@@ -129,26 +133,28 @@ TEST(aut_get_transitions,)
   desc->num_transitions = 2;
   desc->num_states = 3;
   EXPECT_EQ( aut_create(&lts, desc, "tau"), AUT_ESUCCESS);
-  autTransition_t *transitions = (autTransition_t *) malloc( sizeof(autTransition_t) * 2);
-  transitions[0].source = 0;
-  transitions[0].target = 1;
-  transitions[0].action = strdup("a");
-  transitions[1].source = 1;
-  transitions[1].target = 2;
-  transitions[1].action = strdup("b");
-  lts->transitions = transitions;
-  ASSERT_EQ( lts->_capacity, 2);
 
-  autTransition_t *ts = aut_get_transitions(lts);
+  lts->sources[0]       = 0;
+  lts->targets[0]       = 1;
+  lts->actions[0]       = strdup("a");
+
+  lts->sources[1]       = 1;
+  lts->targets[1]       = 2;
+  lts->actions[1]       = strdup("b");
+  ASSERT_EQ( lts->_capacity, 2);
+  lts->size = 2;
+
+  autTransition_t *ts;
+  size_t ntrans = aut_get_transitions(lts, &ts);
+
   EXPECT_NE(ts, nullptr);
-  ASSERT_EQ(ts, transitions);
-  ASSERT_EQ(ts[0].source, 0);
-  ASSERT_EQ(ts[0].target, 1);
-  ASSERT_EQ(strcmp(ts[0].action, "a"), 0);
-  ASSERT_EQ(ts[1].source, 1);
-  ASSERT_EQ(ts[1].target, 2);
-  ASSERT_EQ(strcmp(ts[1].action, "b"), 0);
-  free(transitions);
+  ASSERT_EQ(ts[0].source, lts->sources[0]);
+  ASSERT_EQ(ts[0].target, lts->targets[0]);
+  ASSERT_EQ(strcmp(ts[0].action, lts->actions[0]), 0);
+  ASSERT_EQ(ts[1].source, lts->sources[1]);
+  ASSERT_EQ(ts[1].target, lts->targets[1]);
+  ASSERT_EQ(strcmp(ts[1].action, lts->actions[1]), 0);
+  free(ts);
   free(desc);
   free(lts);
 }
@@ -289,7 +295,6 @@ TEST(aut_get_size, __)
   ASSERT_EQ(err, AUT_EFULL);
   ASSERT_EQ(aut_get_size(lts), 2);
   free(desc);
-  free(lts->transitions); 
   free(lts);
 }
 

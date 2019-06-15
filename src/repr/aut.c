@@ -42,11 +42,19 @@ aut_create(aut_t **aut, autDescriptor_t * descriptor, const char *tau)
   (*aut)->descriptor  = descriptor;
   size_t ntrans = descriptor->num_transitions;
 #ifdef __cplusplus
-  (*aut)->transitions  = (autTransition_t*) calloc( ntrans, sizeof(autTransition_t));
+  // (*aut)->transitions  = (autTransition_t*) calloc( ntrans, sizeof(autTransition_t));
+  (*aut)->sources      = (autState_t*) calloc(ntrans, sizeof(autState_t));
+  (*aut)->targets      = (autState_t*) calloc(ntrans, sizeof(autState_t));
+  (*aut)->actions      = (char**) calloc(ntrans, sizeof(char *));
 #else
-  (*aut)->transitions  = calloc( ntrans, sizeof(autTransition_t));
+  (*aut)->sources      = calloc(ntrans, sizeof(autState_t));
+  (*aut)->targets      = calloc(ntrans, sizeof(autState_t));
+  (*aut)->actions      = calloc(ntrans, sizeof(char *));
 #endif
-  AUT_CHECK_NULL((*aut)->transitions, AUT_EMALLOC);
+  AUT_CHECK_NULL((*aut)->sources, AUT_EMALLOC);
+  AUT_CHECK_NULL((*aut)->targets, AUT_EMALLOC);
+  AUT_CHECK_NULL((*aut)->actions, AUT_EMALLOC);
+
   (*aut)->size        = 0;
   (*aut)->tau         = (tau == AUT_TAU_UNKNOWN)? AUT_TAU_UNKNOWN : strdup(tau);
   (*aut)->_capacity   = ntrans;
@@ -103,13 +111,13 @@ aut_destroy(aut_t **aut)
 {
   if ( (aut != AUT_NULL) && (*aut != AUT_NULL)) {
     aut_descriptor_destroy(&(*aut)->descriptor);
-    autTransition_t *t;
-    for ( size_t i = 0; i < (*aut)->size; ++i) {
-      t = aut_get_transition(*aut, i);
-      if ( t != AUT_NULL)
-        free(t->action);
-    }
-    free((*aut)->transitions);
+    if ( (*aut)->actions != AUT_NULL)
+      for ( size_t i = 0; i < (*aut)->size; ++i)
+          free((*aut)->actions[i]);
+
+    free((*aut)->sources);
+    free((*aut)->targets);
+    free((*aut)->actions);
     free((*aut)->tau);
     free(*aut);
     *aut = NULL;
@@ -122,17 +130,48 @@ aut_get_descriptor(aut_t *aut)
   return aut->descriptor;
 }
 
-AUT_FORCEINLINE autTransition_t *
-aut_get_transitions(aut_t *aut)
+AUT_FORCEINLINE size_t
+aut_get_transitions(aut_t *aut, autTransition_t **t)
 {
-  return aut->transitions;
+  size_t res = 0;
+
+  AUT_CHECK_NULL(aut, res);
+  AUT_CHECK_NULL(t, res);
+
+#ifdef __cplusplus
+  *t = (autTransition_t*) calloc( sizeof(autTransition_t), aut->size);
+#else
+  *t = calloc( sizeof(autTransition_t), aut->size);
+#endif
+  
+  for ( size_t i = 0; i < aut->size; ++i) {
+    (*t)[i].source = (aut->sources)[i];
+    (*t)[i].target = (aut->targets)[i];
+    (*t)[i].action = aut->actions[i];
+    ++res;
+  }
+
+  return res;
 }
 
 AUT_FORCEINLINE autTransition_t *
 aut_get_transition(aut_t *aut, size_t i)
 {
   AUT_CHECK_NULL(aut, AUT_NULL)
-  return (aut->size && i < aut->size)? &aut->transitions[i] : AUT_NULL;
+  if ( i >= aut->size)
+    return AUT_NULL;
+
+  autTransition_t *res;
+#ifdef __cplusplus
+  res = (autTransition_t*) calloc( sizeof(autTransition_t), 1);
+#else
+  res = calloc( sizeof(autTransition_t), 1);
+#endif
+
+  res->source = aut->sources[i];
+  res->target = aut->targets[i];
+  res->action = aut->actions[i];
+  return res;
 }
 
 AUT_FORCEINLINE size_t
@@ -171,30 +210,13 @@ aut_add_transition(aut_t *aut, autState_t from, autState_t to, const char *actio
   AUT_CHECK_NULL        (aut,  AUT_EINVAL1);
   AUT_CHECK_LIMIT_STATE (from, AUT_EINVAL2);
   AUT_CHECK_LIMIT_STATE (to,   AUT_EINVAL3);
-  if ( aut->size == aut->_capacity) {
-    return AUT_EFULL;
-    // autError_t err = _aut_increase_capacity(aut);
-    // if ( err != AUT_ESUCCESS)
-    //   return err;
-  }
-  (aut->transitions)[aut->size].source = from;
-  (aut->transitions)[aut->size].target = to;
-  (aut->transitions)[aut->size++].action = \
-    (action == AUT_NULL)? AUT_NULL : strdup((char *) action);
-
-  return AUT_ESUCCESS;
-}
-
-static autError_t _aut_increase_capacity(aut_t *aut)
-{
-  size_t new_capacity = (aut->_capacity) ? (aut->_capacity / 4) : 4;
-
-  autTransition_t *new_transitions = \
-    realloc(aut->transitions, new_capacity * sizeof( autTransition_t));
   
-  AUT_CHECK_NULL(new_transitions, AUT_EMALLOC);
-
-  aut->transitions = new_transitions;
+  if ( aut->size == aut->_capacity)
+    return AUT_EFULL;
+  
+  aut->sources[aut->size]   = from;
+  aut->targets[aut->size]   = to;
+  aut->actions[aut->size++] = (action == AUT_NULL)? AUT_NULL : strdup((char *) action);
 
   return AUT_ESUCCESS;
 }
