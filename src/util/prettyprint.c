@@ -10,7 +10,7 @@ extern "C"
 void aut_pp_descriptor(autDescriptor_t *descriptor)
 {
   if ( descriptor != NULL) {
-    fprintf(stderr, "des (%u, %lu, %lu)\n", 
+    fprintf(stdout, "des (%u, %lu, %lu)\n", 
       aut_descriptor_get_initstate(descriptor),
       aut_descriptor_get_num_transitions(descriptor),
       aut_descriptor_get_num_states(descriptor));
@@ -22,7 +22,7 @@ void aut_pp_transition(autTransition_t *transition)
   if ( transition != NULL) {
     char *action;
     aut_transition_get_action(transition, &action);
-    printf("t (%u, %u, %s)\n", aut_transition_get_source(transition),
+    fprintf(stdout, "t (%u, %u, %s)\n", aut_transition_get_source(transition),
       aut_transition_get_target(transition), action); 
   }
 }
@@ -32,7 +32,7 @@ void aut_pp(aut_t *aut)
   aut_pp_descriptor(aut->descriptor);
 
   for ( size_t i = 0; i < aut_get_num_transitions(aut); ++i) {  
-    printf("  ");
+    fprintf(stdout, "  ");
     aut_pp_transition( aut_get_transition(aut, i));
   }
 }
