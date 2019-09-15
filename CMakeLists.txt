@@ -25,6 +25,10 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	add_definitions(-DDEBUG)
 endif()
 
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+  set(BUILD_TESTS OFF)
+endif()
+
 message("Build ${CMAKE_BUILD_TYPE}")
 
 ### Project version number
