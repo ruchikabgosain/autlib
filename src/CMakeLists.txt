@@ -28,9 +28,6 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB_RECURSE SOURCES "*.c")
 
-# SET_SOURCE_FILES_PROPERTIES(${SOURCES} PROPERTIES LANGUAGE CXX )
-
-#
 message("-- FLEX source : "  ${FLEX_scanner_OUTPUTS})
 message("-- BISON source : " ${BISON_parser_OUTPUTS})
 
