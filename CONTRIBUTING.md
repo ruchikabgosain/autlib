@@ -17,7 +17,7 @@ Thanks for your interest in contributing to `autlib`.
 
 ## Submit patches
 
-- Have a look at the [issues page](https://github.com/gkarlos/autlib-ws/issues) to identify issues that you can solve or head over to the [TODO](./TODO) file to for a list of things we would like to add to `autlib`.
+- Have a look at the [issues page](https://github.com/gkarlos/autlib/issues) to identify issues that you can solve or head over to the [TODO](./TODO) file to for a list of things we would like to add to `autlib`.
 - Always include tests and clearly describe what your patch addresses and how.
 - Make sure your patch addresses an <b>open</b> issue. If such an open issue doesn't exist make sure you create one first before PR.
 - Include a string such us "Fixes #12345" in your commit message, where "12345" is the issue you fixed. 
@@ -32,11 +32,11 @@ Thanks for your interest in contributing to `autlib`.
   ```
 - Make sure you have signed up for a [Github account](https://github.com/).
 
-- Fork the `autlib` repository into your Github account by clicking the [Fork](https://github.com/pallets/flask/fork) button.
+- Fork the `autlib` repository into your Github account by clicking the [Fork](https://github.com/gkarlos/autlib/fork) button.
 
 - [Clone](https://help.github.com/en/articles/fork-a-repo#step-2-create-a-local-clone-of-your-fork) your fork locally:
     ```
-    git clone https://github.com/{username}/flask
+    git clone https://github.com/{username}/autlib
     cd autlib
     ```
 - Add the `autlib` repository as a remote:
@@ -49,7 +49,7 @@ Thanks for your interest in contributing to `autlib`.
 - Make sure you have read how to build `autlib` and have all requirements installed
 - Create a new branch under which you will be working on. Branch off of the -dev branch:
     ```
-    git checkout -b your-branch-name origin/dev
+    git checkout -b your-branch-name origin/master
     ```
 - Use your favorite editor (vim? :pizza:), make changes and [commit as you go](https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html#commit-your-changes).
 - Make sure you include tests. Put those on their own file(s),under the [test](./test) directory. Feel free to add a subdirectory if needed. 
