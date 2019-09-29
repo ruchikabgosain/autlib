@@ -5,8 +5,9 @@ extern "C"
 
 #include "_parser_.h"
 #include "_scanner_.h"
-#include <aut/read.h>
+#include <aut/read/aut.h>
 #include <aut/util/error.h>
+
 
 autError_t aut_read(const char *path, aut_t **aut)
 {

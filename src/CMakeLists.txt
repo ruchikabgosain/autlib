@@ -11,28 +11,28 @@ if(NOT BISON_FOUND)
 	message(SEND_ERROR "Bison not found")
 endif()
 
-flex_target(scanner ${autlib_SOURCE_DIR}/src/read/aut.l 
-  ${autlib_SOURCE_DIR}/src/read/_scanner_.c 
-  DEFINES_FILE ${autlib_SOURCE_DIR}/src/read/_scanner_.h
+flex_target(autscanner ${autlib_SOURCE_DIR}/src/read/aut/aut.l 
+  ${autlib_SOURCE_DIR}/src/read/aut/_scanner_.c 
+  DEFINES_FILE ${autlib_SOURCE_DIR}/src/read/aut/_scanner_.h
 )
 
-bison_target(parser ${autlib_SOURCE_DIR}/src/read/aut.y
-  ${autlib_SOURCE_DIR}/src/read/_parser_.c 
+bison_target(autparser ${autlib_SOURCE_DIR}/src/read/aut/aut.y
+  ${autlib_SOURCE_DIR}/src/read/aut/_parser_.c 
   COMPILE_FLAGS " -v --report=state --report-file=report.bison"
-  DEFINES_FILE ${autlib_SOURCE_DIR}/src/read/_parser_.h
+  DEFINES_FILE ${autlib_SOURCE_DIR}/src/read/aut/_parser_.h
 )
 
-add_flex_bison_dependency(scanner parser)
+add_flex_bison_dependency(autscanner autparser)
+
+message("-- FLEX source : "  ${FLEX_autscanner_OUTPUTS})
+message("-- BISON source : " ${BISON_autparser_OUTPUTS})
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB_RECURSE SOURCES "*.c")
 
-message("-- FLEX source : "  ${FLEX_scanner_OUTPUTS})
-message("-- BISON source : " ${BISON_parser_OUTPUTS})
-
 #build static autlib
-add_library(autlib STATIC ${SOURCES} ${FLEX_scanner_OUTPUTS} ${BISON_parser_OUTPUTS})
+add_library(autlib STATIC ${SOURCES} ${FLEX_autscanner_OUTPUTS} ${BISON_autparser_OUTPUTS})
 set_target_properties(autlib PROPERTIES PREFIX "")
 set_target_properties(autlib PROPERTIES OUTPUT_NAME "autlib")
 set_target_properties(autlib PROPERTIES SUFFIX ".a")
@@ -43,7 +43,7 @@ endif()
 
 #build shared autlib
 if (${BUILD_SHARED})
-  add_library(autlib_shared SHARED ${SOURCES} ${FLEX_scanner_OUTPUTS} ${BISON_parser_OUTPUTS})
+  add_library(autlib_shared SHARED ${SOURCES} ${FLEX_autscanner_OUTPUTS} ${BISON_autparser_OUTPUTS})
   if (COVERAGE)
     target_link_libraries(autlib_shared coverage_config)
   endif(COVERAGE)

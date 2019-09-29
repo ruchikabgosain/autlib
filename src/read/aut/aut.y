@@ -15,7 +15,7 @@
 %}
 
 %code requires {
-  #include <aut/read.h>
+  #include <aut/read/aut.h>
 }
 
 %lex-param    { void *scanner}

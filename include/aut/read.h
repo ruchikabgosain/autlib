@@ -5,13 +5,8 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-
-#include <aut/repr/aut.h>
-#include <aut/util/error.h>
-
-autError_t
-aut_read(const char *path, aut_t **aut);
+#include <aut/read/aut.h>
+#include <aut/read/fsm.h>
 
 #ifdef __cplusplus
 }

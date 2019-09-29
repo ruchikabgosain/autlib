@@ -5,13 +5,9 @@
 extern "C" {
 #endif
 
-#include <stdio.h>
-
-#include <aut/repr/aut.h>
-#include <aut/util/error.h>
-
-autError_t
-aut_write(const char *path, aut_t *aut);
+#include <aut/write/aut.h>
+#include <aut/write/dot.h>
+#include <aut/write/fsm.h>
 
 #ifdef __cplusplus
 }
