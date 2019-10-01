@@ -46,6 +46,7 @@ set( TestList
   test_repr_transition
 	test_repr_aut
   test_read
+  test_write_aut
 )
 
 foreach(test IN ITEMS ${TestList})
