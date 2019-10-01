@@ -46,6 +46,7 @@ set( TestList
   test_repr_transition
 	test_repr_aut
   test_read
+  test_write_aut
 )
 
 foreach(test IN ITEMS ${TestList})
@@ -61,6 +62,3 @@ target_link_libraries(test_all autlib gtest gtest_main coverage_config)
 ### Scratchpad ###
 add_executable(scratchpad scratchpad.c)
 target_link_libraries(scratchpad autlib)
-
-add_executable(test_write_aut test_write_aut.cpp)
-target_link_libraries(test_write_aut autlib)
