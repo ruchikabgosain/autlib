@@ -47,7 +47,7 @@ Thanks for your interest in contributing to `autlib`.
 
 #### Start Coding
 - Make sure you have read how to build `autlib` and have all requirements installed
-- Create a new branch under which you will be working on. Branch off of the -dev branch:
+- Create a new branch under which you will be working on. Branch off of the `-master` branch:
     ```
     git checkout -b your-branch-name origin/master
     ```
