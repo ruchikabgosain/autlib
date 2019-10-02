@@ -20,8 +20,7 @@ Thanks for your interest in contributing to `autlib`.
 - Have a look at the [issues page](https://github.com/gkarlos/autlib/issues) to identify issues that you can solve or head over to the [TODO](./TODO) file to for a list of things we would like to add to `autlib`.
 - Always include tests and clearly describe what your patch addresses and how.
 - Make sure your patch addresses an <b>open</b> issue. If such an open issue doesn't exist make sure you create one first before PR.
-- Include a string such us "Fixes #12345" in your commit message, where "12345" is the issue you fixed. 
-- When your are set make a Pull Request (See [Creating a pull request](https://help.github.com/en/articles/creating-a-pull-request))
+- When your are set make a PR (See [Creating a pull request](https://help.github.com/en/articles/creating-a-pull-request)). Include a link to the revalant issue (e.g just type #number where number is the issue identifier). 
 
 #### First time setup
 - Download and install [git](https://git-scm.com/downloads)
