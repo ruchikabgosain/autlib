@@ -16,12 +16,14 @@ autlib is a simple, open source, C library for the manipulation of `AUT` files. 
   </tr>
 </table>
 
-## The AUT file
-An `AUT` file is a text file used to represent Labelled Transition System (LTS) ([more](https://en.wikipedia.org/wiki/Transition_system)). It consists of a descriptor line, followed by 1 or more lines, one for each transition is the LTS. The `AUT` descriptor (first line in file) is of the form
+## The AUT file : what is it? 
+An `AUT` file is a text file used to represent Labelled Transition System (LTS) ([more](https://en.wikipedia.org/wiki/Transition_system)). It consists of a descriptor line, followed by 1 or more lines, one for each transition is the LTS. 
+
+The `AUT` descriptor (first line in file) is of the form : 
 
 ```des (<initial_state>, <number_of_transitions>, <number_of_states>)```
 
-The transitions (each remaining line) are of the form
+The transitions (each remaining line) are of the form :
 
 ```(<source_state>, <transition_action>, <target_state>)```
 
@@ -49,7 +51,7 @@ autlib follows the `AUT` format specification (2014 Version) as defined in [CADP
  </tr>
 </table>
 
-## Using autlib
+## Using autlib : Requirements, Builds and Tests
 
 ### Requirements
 
@@ -75,7 +77,7 @@ autlib follows the `AUT` format specification (2014 Version) as defined in [CADP
 </table>
 
 ### Build the library
-- Make sure you have installed all the requirent packages first
+Before we start deployment, make sure you have installed all the required packages in your machine. To do this, follow: 
 - ```
   cd autlib
   mkdir build && cd build
@@ -84,16 +86,18 @@ autlib follows the `AUT` format specification (2014 Version) as defined in [CADP
   ```
 
 ### Run the tests
-- After building the library run `ctest`, or `ctest -V` for more verbose output
-- Alternatively cd into the test folder:
+Now that you have built the library, let's try running some tests!
+
+- Run `ctest`, or `ctest -V` for more verbose output
+- Alternatively, you can change directory into the test folder with the following command : 
   ```
   cd autlib/build/test
   ```
-  and run all tests:
+  and run all tests as follows: 
   ```
   ./test_all
   ```
-  or run a specific test e.g. :
+  To run a specific test, use :
   ```
   ./test_repr_descriptor
   ```
@@ -170,12 +174,12 @@ int main(void)
 Documentation is automatically generated on `make`. It can be easily browsed locally by `./readthedocs.sh` from the root of the project.
 
 ## Contributing
-Contributions are always welcome!
+Contributions are always welcome! Help us make this project more awesome. 
 
-If you are interested in contributing please head over to [`CONTRIBUTING.md`](./CONTRIBUTING.md) in order to learn how to do so.
+If you are interested in contributing, please head over to [`CONTRIBUTING.md`](./CONTRIBUTING.md) to get started. We're waiting! :smile
 
 ## License
-`autlib` is licensed under the MIT License. See the [`LICENSE.md`](./LICENSE.md) file for details.
+`autlib` is licensed under the MIT License. You can head over to [`LICENSE.md`](./LICENSE.md) file for details.
 
 ## Credits
-Doxygen Theme by https://github.com/aklapatch/doxygenTheme
+Offering thanks to this beautiful Doxygen Theme by https://github.com/aklapatch/doxygenTheme
