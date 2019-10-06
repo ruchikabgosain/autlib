@@ -17,9 +17,9 @@ autlib is a simple, open source, C library for the manipulation of `AUT` files. 
 </table>
 
 ## The AUT file : what is it? 
-An `AUT` file is a text file used to represent Labelled Transition System (LTS) ([more](https://en.wikipedia.org/wiki/Transition_system)). It consists of a descriptor line, followed by 1 or more lines, one for each transition is the LTS. 
+An `AUT` file is a text file used to represent a Labelled Transition System (LTS) ([more](https://en.wikipedia.org/wiki/Transition_system)). It consists of a descriptor line, followed by 1 or more lines, one for each transition in the LTS. 
 
-The `AUT` descriptor (first line in file) is of the form : 
+The `AUT` descriptor (first line of the file) is of the form : 
 
 ```des (<initial_state>, <number_of_transitions>, <number_of_states>)```
 
@@ -93,7 +93,7 @@ Now that you have built the library, let's try running some tests!
   ```
   cd autlib/build/test
   ```
-  and run all tests as follows: 
+  and run all the tests as follows: 
   ```
   ./test_all
   ```
